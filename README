@@ -6,6 +6,11 @@ GWT-REST can be used alongside GWT-RPC or as a replacement for it. The intent is
 
 This project is MIT licensed. See LICENSE for details.
 
+Build:
+
+From the "src" directory, run 
+	jar cvf /path/to/your/rails-app/app/gwt/gwt-rails-project-name/lib/gwt-rest.jar .
+
 Usage:
 
 Add this to your module's .gwt.xml file:
