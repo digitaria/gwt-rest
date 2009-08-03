@@ -1,0 +1,45 @@
+Copyright 2007, Jon Crosby
+
+GWT-REST is an asynchronous RESTful client implementation for GWT.
+
+GWT-REST can be used alongside GWT-RPC or as a replacement for it. The intent is to provide a drop-in solution for communicating with REST web services that may or may not be implemented in Java. A set of generic interfaces is provided along with implementations for JSON and Rails in this first release. Extending this for XML and other server side conventions like Jersey or RESTlet should be a small effort for interested parties.
+
+This project is MIT licensed. See LICENSE for details.
+
+Usage:
+
+Add this to your module's .gwt.xml file:
+
+<inherits name="com.kaboomerang.gwt.rest.REST"/>
+
+To manage a "project" resource with a Rails and JSON back end:
+
+1) Implement the Resource interface for a model class, ProjectResource.
+
+2) Use populateFromRepresentation() to parse JSON into the ProjectResource's properties.
+
+3) Use toRepresentation() to output JSON representing the project's properties.
+
+4) ...
+
+ResourceCollection projects = new RailsJsonResourceCollection(
+    "http://example.com/projects/",
+    new ResourceFactory() {
+        public Resource create() {
+            return (Resource) GWT.create(ProjectResource.class);
+        }
+    });
+
+projects.find(42,
+    new ResourceResponseHandler() {
+        public void onSuccess(Resource resource) {
+            Window.alert("Project name is " + ((ProjectResource) resource).getName());
+        }
+
+        public void onError(Request request, Throwable exception) {
+            Window.alert("Something went wrong.");
+        }
+    });
+
+5) See the Javadocs for more information.
+

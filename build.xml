@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="gwt-rest" default="compile" basedir=".">
+  <property file="dev.properties"/>
+  <path id="project.class.path">
+    <pathelement path="${java.class.path}/"/>
+    <pathelement path="${gwt.home}/gwt-user.jar"/>
+  </path>
+
+  <target name="compile" description="Compile src to bin">
+    <mkdir dir="bin"/>
+    <javac srcdir="src:test" destdir="bin" includes="**" debug="on" debuglevel="lines,vars,source" source="1.4">
+      <classpath refid="project.class.path"/>
+    </javac>
+  </target>
+
+  <target name="package" depends="compile" description="Package up the project as a jar">
+    <jar destfile="gwt-rest.jar">
+      <fileset dir="bin">
+        <include name="**/*.class"/>
+		<exclude name="**/test/**"/>
+      </fileset>
+      <fileset dir="src">
+        <include name="**"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <target name="clean">
+    <delete file="gwt-rest.jar"/>
+    <delete>
+      <fileset dir="bin" includes="**/*.class"/>
+    </delete>
+  </target>
+
+  <target name="all" depends="package"/>
+
+</project>
