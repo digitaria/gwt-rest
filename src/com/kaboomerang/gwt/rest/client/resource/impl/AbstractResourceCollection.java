@@ -116,6 +116,7 @@ public abstract class AbstractResourceCollection {
                 RequestBuilder.GET,
                 uriBuilder.buildCollectionGetUri(url));
         declareAccept(builder);
+        declareContentType(builder);
         return builder;
     }
     
@@ -125,6 +126,7 @@ public abstract class AbstractResourceCollection {
                 RequestBuilder.GET,
                 uriBuilder.buildGetUri(url, id));
         declareAccept(builder);
+        declareContentType(builder);
         return builder;
     }
     
