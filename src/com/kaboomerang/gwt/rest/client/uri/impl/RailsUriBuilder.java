@@ -31,23 +31,23 @@ import com.kaboomerang.gwt.rest.client.uri.UriBuilder;
 public class RailsUriBuilder implements UriBuilder {
 
     public String buildGetUri(String baseUri, int id) {
-        return baseUri + id + ".json";
+        return baseUri + "/" + id + ".gwt";
     }
 
     public String buildCollectionGetUri(String baseUri) {
-        return baseUri + ".json";
+        return baseUri + ".gwt";
     }
 
     public String buildPostUri(String baseUri) {
-        return baseUri + ".json";
+        return baseUri + ".gwt";
     }
 
     public String buildPutUri(String baseUri, int id) {
-        return baseUri + id + ".json" + "?_method=put";
+        return baseUri + "/" + id + ".gwt" + "?_method=put";
     }
 
     public String buildDeleteUri(String baseUri, int id) {
-        return baseUri + id + ".json" + "?_method=delete";
+        return baseUri + "/" + id + ".gwt" + "?_method=delete";
     }
 
 }
